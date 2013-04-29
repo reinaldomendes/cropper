@@ -74,9 +74,9 @@ observe is: the url of link created by "f.crop_field" method.
 
 ## Modifying the behavior of Jcrop
 You can call methods of 'jcrop_api'
-```erb
- #new.html.erb
-<script type="text/javascript">
+```javascript
+ //new.html.erb
+//<script type="text/javascript">
 //<![CDATA[
   window.cropper = {
     init: function(jcrop_api){// the init method of copper object expose the 'jcrop_api' object
@@ -88,7 +88,7 @@ You can call methods of 'jcrop_api'
     }
   }
 //]]>
-</script> 
+//</script> 
 ```
 
 ## More reference about Jcrop
