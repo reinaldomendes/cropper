@@ -88,6 +88,11 @@ You can call methods of 'jcrop_api'
         'aspectRatio' : 3/4,
         'minSize' : [60,80]
       });
+    },
+    finish:function(){//called when user crop an image and return from server
+      //do something
+      var iframe = document.getElementById('_iframe')
+      iframe.parent.removeChild(iframe)
     }
   }
 //]]>
