@@ -38,7 +38,7 @@
     
     var choords = <%= Cropper::Image::CROP_ATTRIBUTES.to_json.to_s.html_safe %>
     $.each(choords,function(){      
-      var $input = $('<input type="text" />').attr('name',"<%= prefix_params %>["+this+"]")      
+      var $input = $('<input type="hidden" />').attr('name',"<%= prefix_params %>["+this+"]")      
       
       $parent.append($input);
       

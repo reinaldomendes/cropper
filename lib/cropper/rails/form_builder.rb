@@ -12,7 +12,7 @@ module Cropper
               ret =""  
               
               
-              input = @template.text_field(@object_name, method, {})                                          
+              input = @template.hidden_field(@object_name, method, {})                                          
               ret <<   input
               input_id = (input.to_s.match /id=["'](\w+)/)[1]
               
