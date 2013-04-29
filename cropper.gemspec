@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.11"
-  s.add_dependency "rmagick", "=2.13.1"
+  s.add_dependency "rmagick"#, "=2.13.1"
   s.add_dependency "eventmachine", '1.0.3'
   s.add_dependency "rufus-scheduler", '2.0.18'
 
