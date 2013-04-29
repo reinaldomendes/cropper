@@ -1,0 +1,12 @@
+
+
+<%= form_for [resource],:multipart => true do |f| %>
+  <%= f.label :image do %>
+    <span><%=  __ :image %></span>
+    <%= f.file_field :image %>
+  <%end%>
+  <button type="submit">
+    <%=  t(:image, :scope => "cropper.images") %>
+  </button>
+
+<%end%>

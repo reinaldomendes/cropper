@@ -1,0 +1,100 @@
+
+<%= stylesheet_link_tag    "/libs/Jcrop/css/jquery.Jcrop", :media => "all" %>
+<%= javascript_include_tag "/libs/Jcrop/js/jquery.min.js",
+  "/libs/Jcrop/js/jquery.Jcrop.min.js"
+%>
+
+<% url = cropper_image_path(resource,:input_id => params[:input_id]) %>
+<%= form_for resource, :url => url, :multipart => true do |f| %>  
+
+  <div class="image-to-crop">
+    <%= image_tag cropper_image_path(resource.id,:input_id => params[:input_id]),:height => 300 %>
+  </div>
+  <button type="submit">
+    <%= __(:crop) %>
+  </button>
+<%end%>
+
+
+<script type="text/javascript">
+  
+  (function($){
+    
+    var jcrop_api;
+    var $image = $('.image-to-crop img');
+    
+    //////////////////
+    $image.parents('form').bind('submit',function(evt){
+      var hasBlank = $(this).find('input').filter(function(){        
+        return this.value.length == 0
+      }).length >0
+      if(hasBlank){
+        evt.preventDefault();        
+      }      
+    })
+    /////////////////////////////////////
+    
+    var $parent = $("<span class='wrapper'/>");
+    
+    var choords = <%= Cropper::Image::CROP_ATTRIBUTES.to_json.to_s.html_safe %>
+    $.each(choords,function(){      
+      var $input = $('<input type="text" />').attr('name',"<%= prefix_params %>["+this+"]")      
+      
+      $parent.append($input);
+      
+    })
+    $image.replaceWith($parent)
+    $parent.append($image)
+    
+    
+    
+    
+    var showCoords = function(c){      
+      $.each(choords,function(){        
+        $parent.find("[name$='[" + this + "]']").val(c[this])
+      });
+    }
+    //////////////////////////////////////////////////////////////////////////
+    var showWidthHeigt = function(c){
+      var $img = $parent.find('img');
+      setTimeout(function(){
+        $parent.find("[name$='[img_height]']").val($img.height())
+        $parent.find("[name$='[img_width]']").val($img.width())      
+      },10);
+      showCoords(c);      
+    }
+    //////////////////////////////////////////////////////////////////////////
+    var clearCoords = function(){
+      $.each(choords,function(){        
+        if(this.indexOf('img') == -1){
+          $parent.find("[name$='[" + this + "]']").val("")
+        }
+      }); 
+    }
+    
+    
+    var options ={    
+      onChange:   showCoords,
+      onSelect:   showWidthHeigt,
+      onRelease:  clearCoords//,          
+    }
+    /////////////////////
+    //parent window call
+    /////////////////////////
+    var wnd = window.parent
+    if(wnd == window){
+      wnd = window.opener
+    }    
+    
+    $image.Jcrop( options, function(){ jcrop_api = this;  }  );    
+    //start select to avoid send blank
+    jcrop_api.setSelect([0,0,100])
+    if(wnd.cropper){
+      if($.isFunction(wnd.cropper.init)){
+        wnd.cropper.init(jcrop_api)
+      }
+    }
+  })(jQuery);
+</script>
+
+

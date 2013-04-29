@@ -1,0 +1,19 @@
+<%=  image_tag cropper_image_path(resource,:cropped=> true)%>
+<script type="text/javascript">
+  //<![CDATA[
+  (function($){
+    var wnd = window.parent
+    if(wnd == window){
+      wnd = window.opener
+    }
+   var field = "<%= params[:input_id] %>"
+  
+    var doc = wnd.document
+    var el = doc.getElementById(field)
+    
+    el.value = '<%= resource.cropped_image %>'
+    
+    
+  })(jQuery);
+  //]]>
+</script>
