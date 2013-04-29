@@ -2,6 +2,9 @@
 =======
 Rails gem with Jquery and [Jcrop](deepliquid.com/content/Jcrop.html)
 
+# Expiremental Version use for your account and Risk
+
+
 ## How does works.
 
 Crops an image and send to your form, when you update/create your model, the cropped
@@ -91,8 +94,30 @@ You can call methods of 'jcrop_api'
 </script> 
 ```
 
+## Temporary Image Files
+Cropper uses the rails temp dir/cropper to save temporary image files. Those
+files is auto excluded in certain time.
+
+## configuration
+You can control this time by defining the following initializer
+```ruby
+ #config/initializers/cropper.rb
+ Cropper.setup do| config|
+   cropper.clean_tmp_time = 15.minutes #clean temporary files time
+   cropper.mount_at = "/" # scope for rails routes
+ end
+```
+
+
+
 ## More reference about Jcrop
-[deepliquid.com/content/Jcrop.html](deepliquid.com/content/Jcrop.html)
+[http://deepliquid.com/content/Jcrop.html](deepliquid.com/content/Jcrop.html)
+
+## TODO
+* Create rails generators for more flexibility of user
+* Simplify cropper views, separating embed js in other files when possible.
+
+
 
 
 
