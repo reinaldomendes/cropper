@@ -23,7 +23,7 @@ module Cropper
       #cronjob clean image tmp
       require "eventmachine"
       require 'rufus/scheduler'
-      scheduler = Rufus::Scheduler::EmScheduler.start_new
+      scheduler = Rufus::Scheduler.new
       scheduler.every config.clean_tmp_time do
         #puts "clean"
         Cropper::Image.sweep
