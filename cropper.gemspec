@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2.11"
   s.add_dependency "rmagick"#, "=2.13.1"
   s.add_dependency "eventmachine", '1.0.3'
-  s.add_dependency "rufus-scheduler", '2.0.18'
+  s.add_dependency "rufus-scheduler", '~>3.0.3'
 
   s.add_development_dependency "sqlite3"
 end
