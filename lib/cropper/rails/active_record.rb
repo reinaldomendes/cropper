@@ -10,10 +10,10 @@ module Cropper
         end
         def cropper(attr, options={})                
           method = Cropper.attr_name_for(attr)
-          #opt_attr = Cropper.attr_options_for(attr)          
-          #cattr_accessor opt_attr.to_sym          
+          opt_attr = Cropper.attr_options_for(attr)          
+          cattr_accessor opt_attr.to_sym          
           self.send("#{opt_attr}=",options)
-          #cattr_reader opt_attr.to_sym          
+          cattr_reader opt_attr.to_sym          
           
           define_method(method) do
             ret = send(attr)
