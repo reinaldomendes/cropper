@@ -2,7 +2,7 @@
 =======
 Rails gem with Jquery and [Jcrop](deepliquid.com/content/Jcrop.html)
 
-# Expiremental Version use for your account and Risk
+# Expiremental Version. Use At Your Own Risk
 
 
 ## How does works.
